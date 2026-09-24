@@ -125,6 +125,11 @@ h1 em {
   color: var(--orange);
 }
 
+.hero h1 {
+  font-size: clamp(2.15rem, 4.2vw, 3.35rem);
+  line-height: 1.08;
+}
+
 h2 {
   margin: 0 0 12px;
   font-size: clamp(2rem, 4vw, 3.35rem);
