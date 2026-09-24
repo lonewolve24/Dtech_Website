@@ -20,4 +20,4 @@ Connect the GitHub repo in Railway and deploy from `main`.
 
 ## Shop details
 
-WhatsApp, phone, and email shown on the page are set in `js/main.js` and `index.html`. Address and opening hours on the page are still placeholders.
+The shop is at Serekunda, Babung Fatty Junction, Monday to Saturday, 9:00am to 7:00pm. WhatsApp, phone, and email are on the page.
