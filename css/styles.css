@@ -86,21 +86,6 @@ button {
   outline-offset: 3px;
 }
 
-.skip {
-  position: absolute;
-  left: 16px;
-  top: -40px;
-  z-index: 80;
-  background: var(--orange);
-  color: var(--ink);
-  padding: 8px 12px;
-  border-radius: 8px;
-}
-
-.skip:focus {
-  top: 12px;
-}
-
 .container {
   width: min(1120px, calc(100% - 32px));
   margin-inline: auto;
