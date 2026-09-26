@@ -992,6 +992,70 @@ textarea:user-invalid {
   }
 }
 
+.track-form {
+  max-width: 560px;
+  display: grid;
+  gap: 10px;
+}
+
+.track-form label {
+  color: var(--orange);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.track-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.track-form input {
+  flex: 1 1 220px;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.track-form input:focus {
+  outline: 2px solid var(--orange);
+  outline-offset: 1px;
+}
+
+.track-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.track-result {
+  margin-top: 8px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.track-result.is-ready {
+  border-color: rgba(34, 197, 94, 0.45);
+}
+
+.track-result.is-error {
+  border-color: rgba(248, 128, 0, 0.45);
+}
+
+.track-result strong {
+  display: block;
+  font-family: var(--display);
+  margin-bottom: 4px;
+}
+
 @keyframes ticker {
   from {
     transform: translateX(0);

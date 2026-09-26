@@ -18,6 +18,14 @@ Railway uses the `Dockerfile` in this folder. It serves the site with nginx and 
 
 Connect the GitHub repo in Railway and deploy from `main`.
 
+On the **website** Railway service (not the CRM), set:
+
+```
+TRACK_API_URL=https://crm.dtech-electronics.com/api/public/repair-status/
+```
+
+The CRM still needs `PUBLIC_TRACK_ALLOWED_ORIGINS` set to this site (`https://www.dtech-electronics.com`).
+
 ## Shop details
 
 The shop is at Serekunda, Babung Fatty Junction, Monday to Saturday, 9:00am to 7:00pm. WhatsApp, phone, and email are on the page.

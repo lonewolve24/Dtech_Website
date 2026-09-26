@@ -110,3 +110,59 @@ const numberSlot = document.querySelector("[data-whatsapp-number]");
 if (numberSlot && WHATSAPP_DISPLAY.trim()) {
   numberSlot.textContent = WHATSAPP_DISPLAY.trim();
 }
+
+const TRACK_API_URL = ((window.DTECH_CONFIG && window.DTECH_CONFIG.TRACK_API_URL) || "").trim();
+const trackForm = document.querySelector("#track-form");
+const trackResult = document.querySelector("#track-result");
+
+if (trackForm && trackResult) {
+  trackForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const code = (trackForm.code.value || "").trim();
+    trackResult.hidden = false;
+    trackResult.className = "track-result";
+    if (!TRACK_API_URL) {
+      trackResult.classList.add("is-error");
+      trackResult.textContent = "Repair tracking is not configured yet.";
+      return;
+    }
+    if (!code) {
+      trackResult.classList.add("is-error");
+      trackResult.textContent = "Enter the repair code we gave you.";
+      return;
+    }
+    trackResult.textContent = "Checking…";
+    try {
+      const url = new URL(TRACK_API_URL, window.location.origin);
+      url.searchParams.set("code", code);
+      const response = await fetch(url.toString());
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (err) {
+        data = {};
+      }
+      if (!response.ok || !data.found) {
+        trackResult.classList.add("is-error");
+        trackResult.textContent = data.error || (response.status === 404
+          ? "Status check is not available yet. WhatsApp us and we’ll look up the code."
+          : "No repair found for that code. Check the letters and try again.");
+        return;
+      }
+      const ready = Boolean(data.ready_for_pickup);
+      trackResult.classList.toggle("is-ready", ready);
+      const title = document.createElement("strong");
+      title.textContent = ready ? "Done. Ready for pickup." : `Still being fixed. ${data.status || "In progress"}.`;
+      trackResult.replaceChildren(title);
+      if (data.gadget) {
+        trackResult.append(document.createTextNode(data.gadget));
+      }
+      if (data.brought_in) {
+        trackResult.append(document.createElement("br"), document.createTextNode(`Dropped off ${data.brought_in}`));
+      }
+    } catch (err) {
+      trackResult.classList.add("is-error");
+      trackResult.textContent = "Could not check status right now. Try again or WhatsApp us.";
+    }
+  });
+}

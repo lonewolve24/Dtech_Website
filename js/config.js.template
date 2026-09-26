@@ -1,0 +1,3 @@
+window.DTECH_CONFIG = {
+  TRACK_API_URL: "${TRACK_API_URL}"
+};
