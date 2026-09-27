@@ -160,6 +160,14 @@ if (trackForm && trackResult) {
       if (data.brought_in) {
         trackResult.append(document.createElement("br"), document.createTextNode(`Dropped off ${data.brought_in}`));
       }
+      if (data.is_complimentary) {
+        trackResult.append(document.createElement("br"), document.createTextNode("No charge"));
+      } else if (data.has_price) {
+        const due = data.amount_due != null ? data.amount_due : "0.00";
+        trackResult.append(document.createElement("br"), document.createTextNode(`Amount to pay: D${due}`));
+      } else {
+        trackResult.append(document.createElement("br"), document.createTextNode("Price not set yet"));
+      }
     } catch (err) {
       trackResult.classList.add("is-error");
       trackResult.textContent = "Could not check status right now. Try again or WhatsApp us.";
